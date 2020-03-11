@@ -1,4 +1,17 @@
-import React from 'react';
-import { HydraAdmin } from '@api-platform/admin';
+import React from "react";
+import {
+  HydraAdmin,
+  ResourceGuesser,
+} from "@api-platform/admin";
 
-export default () => <HydraAdmin entrypoint={process.env.REACT_APP_API_ENTRYPOINT}/>;
+import customers from "./customers";
+import commands from "./commands";
+import products from "./products";
+
+export default () => (
+  <HydraAdmin entrypoint={process.env.REACT_APP_API_ENTRYPOINT}>
+    <ResourceGuesser name="customers" {...customers} />
+    <ResourceGuesser name="commands" {...commands} />
+    <ResourceGuesser name="products" {...products} />
+  </HydraAdmin>
+);
