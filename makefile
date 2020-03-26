@@ -9,4 +9,4 @@ update-db:
 	docker-compose exec php bin/console doctrine:schema:update  --complete --force
 
 install-admin-deps:
-	docker-compose exec admin npm install
+	docker-compose exec admin yarn install
