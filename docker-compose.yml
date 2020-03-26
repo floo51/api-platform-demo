@@ -120,7 +120,7 @@ services:
       - dev-tls
     volumes:
       - ./admin:/usr/src/admin:rw,cached
-      - dev-certs:/usr/src/admin/node_modules/webpack-dev-server/ssl:rw,nocopy
+      - dev-certs:/usr/src/admin/node_modules/webpack-dev-server/ssl:ro,nocopy
     ports:
       - target: 3000
         published: 444
