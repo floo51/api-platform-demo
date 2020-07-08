@@ -1,0 +1,34 @@
+version: "3.5"
+
+services:
+  admin:
+    stdin_open: true
+    build:
+      context: ./admin
+      target: api_platform_admin_development
+      cache_from:
+        - ${ADMIN_IMAGE:-quay.io/api-platform/admin}
+    image: ${ADMIN_IMAGE:-quay.io/api-platform/admin}
+    volumes:
+      - ./admin:/usr/src/admin:rw,cached
+    environment:
+      REACT_APP_API_ENTRYPOINT: http://vulcain:80
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+
+  cypress:
+    image: cypress/browsers:chrome69
+    user: "${UID}:${GID}"
+    ipc: host
+    depends_on:
+      - admin
+    volumes:
+      - ./tests:/app
+    environment:
+      - CYPRESS_CACHE_FOLDER=/app/var/cypress_cache
+    working_dir: "/app"
+    links:
+      - "admin:admin"
+      - "vulcain:vulcain"
