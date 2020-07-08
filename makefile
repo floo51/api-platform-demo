@@ -10,3 +10,9 @@ update-db:
 
 install-admin-deps:
 	docker-compose exec admin yarn install
+
+test-open:
+	cd tests && yarn run cypress open
+
+test:
+	cd tests && yarn run cypress run
