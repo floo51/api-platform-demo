@@ -6,11 +6,14 @@ run:
 install:
 	docker-compose run admin yarn install
 
+build:
+	docker-compose run admin yarn build
+
 load-fixtures:
-	docker-compose exec php bin/console hautelook:fixtures:load
+	docker-compose run php bin/console hautelook:fixtures:load
 
 drop-db:
-	docker-compose exec php bin/console doctrine:schema:drop --full-database --force
+	docker-compose run php bin/console doctrine:schema:drop --full-database --force
 
 update-db:
-	docker-compose exec php bin/console doctrine:schema:update  --complete --force
+	docker-compose run php bin/console doctrine:schema:update  --complete --force
