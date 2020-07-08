@@ -56,7 +56,7 @@ const EventList = ({ record, basePath }) => {
         { field: 'date', order: 'DESC' },
         { customer_id: record && record.id }
     );
-    const { data: reviews, ids: reviewIds } = useGetList(
+    const { data: reviews, ids: reviewIds = [] } = useGetList(
         'reviews',
         { page: 1, perPage: 100 },
         { field: 'date', order: 'DESC' },
@@ -172,12 +172,12 @@ const EventList = ({ record, basePath }) => {
                         basePath={basePath}
                     />
                 ) : (
-                    <Review
-                        record={event.data}
-                        key={`review_${event.data.id}`}
-                        basePath={basePath}
-                    />
-                )
+                        <Review
+                            record={event.data}
+                            key={`review_${event.data.id}`}
+                            basePath={basePath}
+                        />
+                    )
             )}
         </>
     );
