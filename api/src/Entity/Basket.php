@@ -7,15 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * This is a dummy entity. Remove it!
+ * A customer
  *
  * @ApiResource
  * @ORM\Entity
  */
-class Greeting
+class Basket
 {
     /**
-     * @var int The entity Id
+     * @var int The basket Id
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,13 +23,26 @@ class Greeting
      */
     private $id;
 
-    /**
-     * @var string A nice person
+   /**
+     * @var Command
      *
-     * @ORM\Column
-     * @Assert\NotBlank
+     * @ORM\ManyToOne(targetEntity="Command", inversedBy="basket")
      */
-    public $name = '';
+    public $command;
+
+   /**
+     * @var Product
+     *
+     * @ORM\ManyToOne(targetEntity="Product")
+     */
+    public $product;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    public $quantity = 1;
 
     public function getId(): int
     {

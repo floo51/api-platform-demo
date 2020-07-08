@@ -27,7 +27,7 @@ COPY . ./
 
 VOLUME /usr/src/admin/node_modules
 
-ENV HTTPS true
+# ENV HTTPS true
 
 CMD ["yarn", "start"]
 
