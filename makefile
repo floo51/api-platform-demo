@@ -28,8 +28,6 @@ test:
 install-cypress:
 	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress install'
 
-test-docker-environment-start:
-	$(DOCKER_COMPOSE_TEST) up
 
 test-docker-run:
 	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress run'
@@ -39,3 +37,21 @@ test-docker-build:
 
 test-docker-open-cypress:
 	$(DOCKER_COMPOSE_TEST) -f ./tests/cy-open.yml run --no-deps cypress bash -ci 'NODE_ENV=test ./node_modules/.bin/cypress open'
+
+test-load-fixtures:
+	$(DOCKER_COMPOSE_TEST) exec -T php bin/console hautelook:fixtures:load -n --no-ansi -q
+
+test-update-db:
+	$(DOCKER_COMPOSE_TEST) exec php bin/console doctrine:schema:update  --complete --force
+
+test-docker-environment-start:
+	$(DOCKER_COMPOSE_TEST) up -d
+	$(MAKE) test-docker-build
+	$(MAKE) test-update-db 
+	$(MAKE) test-load-fixtures
+
+test-docker-environment-stop:
+	$(DOCKER_COMPOSE_TEST) stop
+
+test-docker-environment-logs:
+	$(DOCKER_COMPOSE_TEST) logs -f
