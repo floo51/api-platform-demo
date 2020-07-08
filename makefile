@@ -30,13 +30,13 @@ install-cypress:
 
 
 test-docker-run:
-	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress run'
+	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress run --config baseUrl=http://admin:3000/'
 
 test-docker-build:
 	$(DOCKER_COMPOSE_TEST) run admin yarn build
 
 test-docker-open-cypress:
-	$(DOCKER_COMPOSE_TEST) -f ./tests/cy-open.yml run --no-deps cypress bash -ci 'NODE_ENV=test ./node_modules/.bin/cypress open'
+	$(DOCKER_COMPOSE_TEST) -f ./tests/cy-open.yml run --no-deps cypress bash -ci 'NODE_ENV=test ./node_modules/.bin/cypress open --config baseUrl=http://admin:3000/'
 
 test-load-fixtures:
 	$(DOCKER_COMPOSE_TEST) exec -T php bin/console hautelook:fixtures:load -n --no-ansi -q
