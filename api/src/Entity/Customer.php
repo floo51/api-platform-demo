@@ -78,37 +78,37 @@ class Customer
     /**
      * @var \DateTimeInterface Birthday
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    public $birthday = '';
+    public $birthday = null;
 
     /**
      * @var \DateTimeInterface First seen time
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    public $first_seen = '';
+    public $first_seen = null;
 
     /**
      * @var \DateTimeInterface Last seen time
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    public $last_seen = '';
+    public $last_seen = null;
 
     /**
-     * @var date Has the customer ordered once
+     * @var boolean Has the customer ordered once
      *
      * @ORM\Column
      */
-    public $has_ordered = '';
+    public $has_ordered = false;
 
     /**
      * @var boolean Is the customer subscribed to newsletter
      *
      * @ORM\Column(type="boolean")
      */
-    public $has_newsletter = '';
+    public $has_newsletter = false;
 
     /**
      * @var int Number of orders the customer has passed
@@ -122,7 +122,7 @@ class Customer
      *
      * @ORM\Column(type="float")
      */
-    public $total_spent = '';
+    public $total_spent = 0;
 
     public function getId(): int
     {

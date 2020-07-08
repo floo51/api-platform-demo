@@ -1,6 +1,6 @@
 
 load-fixtures:
-	docker-compose exec php bin/console hautelook:fixtures:load
+	docker-compose exec -T php bin/console hautelook:fixtures:load -n --no-ansi -q
 
 drop-db:
 	docker-compose exec php bin/console doctrine:schema:drop --full-database --force
