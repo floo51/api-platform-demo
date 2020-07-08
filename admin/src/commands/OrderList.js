@@ -163,7 +163,7 @@ class TabbedDatagrid extends React.Component {
 
 const StyledTabbedDatagrid = props => {
     const classes = useDatagridStyles();
-    const isXSmall = useMediaQuery(theme => theme.breakpoints.down('xs'));
+    const isXSmall = false;
     return <TabbedDatagrid classes={classes} isXSmall={isXSmall} {...props} />;
 };
 

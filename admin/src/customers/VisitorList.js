@@ -34,9 +34,7 @@ const useStyles = makeStyles({
 
 const VisitorList = (props) => {
     const classes = useStyles();
-    const isXsmall = useMediaQuery(theme =>
-        theme.breakpoints.down('xs')
-    );
+    const isXsmall = false;
     return (
         <List
             {...props}

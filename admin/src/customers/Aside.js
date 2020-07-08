@@ -31,9 +31,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useAsideStyles = makeStyles(theme => ({
     root: {
         width: 400,
-        [theme.breakpoints.down('md')]: {
-            display: 'none',
-        },
     },
 }));
 
