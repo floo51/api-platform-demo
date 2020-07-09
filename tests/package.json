@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "tests": "yarn run cypress install && yarn run cypress run --config baseUrl=http://admin:3000/"
+    "tests": "yarn run cypress install && DEBUG=cypress:* yarn run cypress run --config baseUrl=http://admin:3000/"
   },
   "devDependencies": {
     "cypress": "^4.10.0"

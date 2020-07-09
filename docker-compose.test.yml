@@ -19,6 +19,8 @@ services:
     ipc: host
     depends_on:
       - admin
+      - vulcain
+      - api
     volumes:
       - ./tests:/app
     environment:
