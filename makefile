@@ -29,7 +29,7 @@ install-cypress:
 	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress install'
 
 test-docker-run:
-	$(DOCKER_COMPOSE_TEST) up --force-recreate
+	$(DOCKER_COMPOSE_TEST) up --force-recreate --abort-on-container-exit --exit-code-from cypress
 
 test-docker-build:
 	$(DOCKER_COMPOSE_TEST) run admin yarn build
