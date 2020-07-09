@@ -3,20 +3,15 @@ version: "3.5"
 services:
   admin:
     stdin_open: true
-    build:
-      context: ./admin
-      target: api_platform_admin_development
-      cache_from:
-        - ${ADMIN_IMAGE:-quay.io/api-platform/admin}
-    image: ${ADMIN_IMAGE:-quay.io/api-platform/admin}
+    image: node:12
     volumes:
-      - ./admin:/usr/src/admin:rw,cached
+      - ./admin:/usr/src/admin
     environment:
       REACT_APP_API_ENTRYPOINT: http://vulcain:80
     ports:
-      - target: 3000
-        published: 3000
-        protocol: tcp
+      - 3000:3000
+    working_dir: /usr/src/admin
+    command: yarn start
 
   cypress:
     image: cypress/browsers:chrome69
