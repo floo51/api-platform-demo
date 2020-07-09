@@ -28,9 +28,8 @@ test:
 install-cypress:
 	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress install'
 
-
 test-docker-run:
-	$(DOCKER_COMPOSE_TEST) run --rm --no-deps cypress bash -ci 'yarn run cypress run --config baseUrl=http://admin:3000/'
+	$(DOCKER_COMPOSE_TEST) up --force-recreate
 
 test-docker-build:
 	$(DOCKER_COMPOSE_TEST) run admin yarn build
@@ -47,7 +46,7 @@ test-update-db:
 test-docker-environment-start:
 	$(DOCKER_COMPOSE_TEST) up -d
 	$(MAKE) test-docker-build
-	$(MAKE) test-update-db 
+	$(MAKE) test-update-db
 	$(MAKE) test-load-fixtures
 
 test-docker-environment-stop:
