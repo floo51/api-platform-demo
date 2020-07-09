@@ -14,16 +14,16 @@ services:
     command: yarn start
 
   cypress:
-    image: cypress/browsers:chrome69
-    user: "${UID}:${GID}"
-    ipc: host
+    image: cypress/included:4.10.0
     depends_on:
       - admin
+      - vulcain
+      - api
     volumes:
       - ./tests:/app
-    environment:
-      - CYPRESS_CACHE_FOLDER=/app/var/cypress_cache
-    working_dir: "/app"
+    working_dir: /app
     links:
       - "admin:admin"
       - "vulcain:vulcain"
+    entrypoint: yarn run wait-and-test
+

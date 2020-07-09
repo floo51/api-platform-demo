@@ -8,19 +8,19 @@ context("Customers", () => {
 
   it("should navigate on customers list", () => {
     cy.contains("Next").click();
-    cy.contains("26-50 of 100").should("exist");
+    cy.contains("26-50 of 100", { timeout: 120000 }).should("exist");
     cy.contains("Next").click();
-    cy.contains("51-75 of 100").should("exist");
+    cy.contains("51-75 of 100", { timeout: 120000 }).should("exist");
     cy.contains("Next").click();
-    cy.contains("76-100 of 100").should("exist");
+    cy.contains("76-100 of 100", { timeout: 120000 }).should("exist");
   });
 
   it("should create a customer", () => {
-    cy.contains("1-25 of 100").should("exist");
+    cy.contains("1-25 of 100", { timeout: 120000 }).should("exist");
 
-    cy.contains("Create").click({ force: true });
+    cy.contains("Create", { timeout: 120000 }).click({ force: true });
 
-    cy.contains("First name").parent().find("input").type("Peter");
+    cy.contains("First name", { timeout: 120000 }).parent().find("input").type("Peter");
     cy.contains("Last name").parent().find("input").type("Mac Calloway");
     cy.contains("Email")
       .parent()
@@ -38,9 +38,9 @@ context("Customers", () => {
 
     cy.contains("Save").click({ force: true });
 
-    cy.contains("Element created").should("exist", { timeout: 20000 });
+    cy.contains("Element created", { timeout: 120000 }).should("exist");
 
     cy.visit("/#/customers");
-    cy.contains("1-25 of 101").should("exist", { timeout: 20000 });
+    cy.contains("1-25 of 101", { timeout: 120000 }).should("exist");
   });
 });
