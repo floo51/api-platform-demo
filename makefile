@@ -76,4 +76,4 @@ setup-test: install-admin-deps test-docker-build test-docker-environment-start
 teardown-test: test-docker-environment-stop
 
 run-test:
-	$(DOCKER_COMPOSE_TEST) run --no-deps cypress bash -ci 'yarn wait-and-test'
+	$(DOCKER_COMPOSE_TEST) run --rm --no-deps --name=api-platform-argos_cypress_run cypress bash -ci 'yarn wait-and-test'
