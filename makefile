@@ -17,7 +17,7 @@ update-db:
 	docker-compose exec php bin/console doctrine:schema:update  --complete --force
 
 install-admin-deps:
-	docker-compose exec admin yarn install
+	docker-compose run admin yarn install
 
 test-open:
 	cd tests && yarn run cypress open
@@ -70,3 +70,10 @@ test-docker-environment-stop:
 
 test-docker-environment-logs:
 	$(DOCKER_COMPOSE_TEST) logs -f
+
+setup-test: install-admin-deps test-docker-build test-docker-environment-start
+
+teardown-test: test-docker-environment-stop
+
+run-test:
+	$(DOCKER_COMPOSE_TEST) run --rm --no-deps --name=api-platform-argos_cypress_run cypress bash -ci 'yarn wait-and-test'

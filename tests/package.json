@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "wait-and-test": "start-test http-get://admin:3000 test",
+    "wait-and-test": "server-test http-get://admin:3000 test",
     "start": "python -m SimpleHTTPServer 9000",
-    "test": "cypress run --config baseUrl=http://admin:3000/"
+    "test": "cypress run"
   },
   "devDependencies": {
     "cypress": "^4.10.0",
