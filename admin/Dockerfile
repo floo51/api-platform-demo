@@ -14,11 +14,15 @@ WORKDIR /usr/src/admin
 
 # prevent the reinstallation of node modules at every changes in the source code
 COPY package.json yarn.lock ./
+
+RUN apk update && apk upgrade && \
+	apk add --no-cache bash git openssh
+
 RUN set -eux; \
 	apk add --no-cache --virtual .gyp \
-		g++ \
-		make \
-		python \
+	g++ \
+	make \
+	python \
 	; \
 	yarn install; \
 	apk del .gyp
