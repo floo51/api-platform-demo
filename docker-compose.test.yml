@@ -25,3 +25,5 @@ services:
     links:
       - "admin:admin"
       - "vulcain:vulcain"
+    entrypoint: yarn run wait-and-test
+
